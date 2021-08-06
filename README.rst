@@ -6,16 +6,16 @@ AWS Batch Helpers
 .. image:: https://img.shields.io/pypi/v/aws_batch_helpers.svg
         :target: https://pypi.python.org/pypi/aws_batch_helpers
 
-.. image:: https://img.shields.io/travis/jerowe/aws_batch_helpers.svg
-        :target: https://travis-ci.com/jerowe/aws_batch_helpers
+.. image:: https://img.shields.io/travis/biohub/aws_batch_helpers.svg
+        :target: https://travis-ci.com/biohub/aws_batch_helpers
 
 .. image:: https://readthedocs.org/projects/aws-batch-helpers/badge/?version=latest
         :target: https://aws-batch-helpers.readthedocs.io/en/latest/?version=latest
         :alt: Documentation Status
 
 
-.. image:: https://pyup.io/repos/github/jerowe/aws_batch_helpers/shield.svg
-     :target: https://pyup.io/repos/github/jerowe/aws_batch_helpers/
+.. image:: https://pyup.io/repos/github/biohub/aws_batch_helpers/shield.svg
+     :target: https://pyup.io/repos/github/biohub/aws_batch_helpers/
      :alt: Updates
 
 

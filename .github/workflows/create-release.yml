@@ -4,11 +4,13 @@ on:
   workflow_run:
     workflows: ["Run Tests"]
     types: [completed]
-  push:
+  # push:
     branches:
       - master
+
 jobs:
   create_release:
+    # needs: test
     runs-on: ubuntu-latest
     steps:
 

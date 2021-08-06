@@ -9,7 +9,6 @@ on:
       - master
 jobs:
   create_release:
-    needs: test
     runs-on: ubuntu-latest
     steps:
 

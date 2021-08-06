@@ -26,34 +26,3 @@ jobs:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           release_name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
-
-  pypi_package_deploy:
-      needs: create_release
-      runs-on: ubuntu-20.04
-
-      steps:
-          - uses: actions/checkout@v2
-          - name: Set up Python 3.9 
-            uses: actions/setup-python@v2
-            with:
-                python-version: 3.9 
-          - name: Install dependencies
-            run: |
-                python -m pip install --upgrade pip
-                pip install flake8 pytest
-                if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-                if [ -f requirements_dev.txt ]; then pip install -r requirements_dev.txt; fi
-          - name: Build
-            env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              TAG: ${{ steps.tag_version.outputs.new_tag }}
-            run: |
-                make dist
-          - name: Publish package
-            # if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
-          #   if: startsWith(github.ref, 'refs/tags')
-            uses: pypa/gh-action-pypi-publish@release/v1
-            with:
-                user: __token__
-                password: ${{ secrets.PYPI_API_TOKEN }}
-

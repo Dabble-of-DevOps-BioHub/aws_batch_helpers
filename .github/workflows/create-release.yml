@@ -7,6 +7,7 @@ on:
         branches:
             - master
 
+# trying with PR
 jobs:
     release:
         runs-on: ubuntu-latest

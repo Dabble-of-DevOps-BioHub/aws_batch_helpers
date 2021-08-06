@@ -5,11 +5,11 @@ name: Python Package Release
 #   release:
 #     types: [created, published]
 
-# on:
-#     workflow_run:
-#         workflows: ["Create Release"]
-#         types: [completed]
-    # push:
+on:
+    # workflow_run:
+    #     workflows: ["Create Release"]
+    #     types: [completed]
+    push:
     # branches:
     #   - master
 

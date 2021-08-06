@@ -1,0 +1,16 @@
+name: Create Release
+
+on:
+    release:
+        types:
+            - "**"
+
+# trying with PR
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+
+            - uses: actions-ecosystem/action-get-latest-tag@v1
+              id: get-latest-tag

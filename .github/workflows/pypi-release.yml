@@ -1,11 +1,5 @@
 name: PyPi Release 
 
-# on:
-#   tags:
-#     - 'v*'
-# on:
-#   release:
-#     types: [created]
 on:
   push:
     tags:        

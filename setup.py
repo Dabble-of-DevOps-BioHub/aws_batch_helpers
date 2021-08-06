@@ -10,7 +10,7 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['Click>=7.0', 'boto3']
+requirements = ['boto3', 'boto3-stubs[s3,ec2,batch,logs]']
 
 test_requirements = ['pytest>=3', ]
 

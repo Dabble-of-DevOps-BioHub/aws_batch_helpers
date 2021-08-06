@@ -31,7 +31,7 @@ jobs:
                   if [ -f requirements_dev.txt ]; then pip install -r requirements_dev.txt; fi
             - name: Build
               run: |
-                  python setup.py build
+                  make dist
             - name: Publish package
               # if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
               # if: startsWith(github.ref, 'refs/tags')

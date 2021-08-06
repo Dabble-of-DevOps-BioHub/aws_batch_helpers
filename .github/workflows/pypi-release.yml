@@ -5,10 +5,10 @@ name: Python Package Release
 #   release:
 #     types: [created, published]
 
-on:
-    workflow_run:
-        workflows: ["Create Release"]
-        types: [completed]
+# on:
+#     workflow_run:
+#         workflows: ["Create Release"]
+#         types: [completed]
     # push:
     # branches:
     #   - master
@@ -34,7 +34,7 @@ jobs:
                   make dist
             - name: Publish package
               # if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
-              # if: startsWith(github.ref, 'refs/tags')
+              if: startsWith(github.ref, 'refs/tags')
               uses: pypa/gh-action-pypi-publish@release/v1
               with:
                   user: __token__

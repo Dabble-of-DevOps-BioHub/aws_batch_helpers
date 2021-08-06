@@ -5,10 +5,10 @@ on:
   release:
     types: [created, published, released]
 
-on:
-    workflow_run:
-        workflows: ["Create Release"]
-        types: [completed]
+# on:
+#     workflow_run:
+#         workflows: ["Create Release"]
+#         types: [completed]
     # push:
     # branches:
     #   - master

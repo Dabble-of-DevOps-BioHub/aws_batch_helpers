@@ -3,6 +3,7 @@ name: Create Release
 on:
   workflow_run:
     workflows: ["Run Tests"]
+    types: [completed]
   push:
     branches:
       - master

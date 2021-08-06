@@ -3,12 +3,12 @@ name: Python Package Release
 # I don't know why this isn't triggered when a release is created
 on:
   release:
-    types: [created, published]
+    types: [created, published, released]
 
-# on:
-#     workflow_run:
-#         workflows: ["Create Release"]
-#         types: [completed]
+on:
+    workflow_run:
+        workflows: ["Create Release"]
+        types: [completed]
     # push:
     # branches:
     #   - master

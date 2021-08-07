@@ -30,14 +30,14 @@ jobs:
 
             - uses: heinrichreimer/github-changelog-generator-action@v2.1.1
               id: changelog
-                with:
+              with:
                   token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Create a GitHub release
               uses: actions/create-release@v1
               env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                tag_name: ${{ steps.bump-semver.outputs.new_version }}
-                release_name: Release ${{ steps.bump-semver.outputs.new_version }}
-                body: ${{ steps.changelog.outputs.changelog }}
+                  tag_name: ${{ steps.bump-semver.outputs.new_version }}
+                  release_name: Release ${{ steps.bump-semver.outputs.new_version }}
+                  body: ${{ steps.changelog.outputs.changelog }}

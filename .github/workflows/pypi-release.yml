@@ -6,6 +6,7 @@ name: PyPi Release
 #             - "v*"
 #         # branches:
 #         #     - "*"
+
 on:
     workflow_run:
         workflows: ["Create Release"]

@@ -239,6 +239,7 @@ def submit_batch_job(batch_client: BatchClient, log_client: CloudWatchLogsClient
 
     Args:
         batch_client (BatchClient): boto3.client('batch') 
+        log_client (BatchClient): boto3.client('batch') 
         submit_job (SubmitJobRequestRequestTypeDef): Submit object to AWS Batch 
     """
     try:
@@ -252,12 +253,13 @@ def submit_batch_job(batch_client: BatchClient, log_client: CloudWatchLogsClient
             jobId
         ]
     )
-    status = watch_job(batch_client=batch_client,
-                       log_client=log_client, job_response=job_response)
-    job_response: DescribeJobsResponseTypeDef = batch_client.describe_jobs(
-        jobs=[
-            jobId
-        ]
-    )
-    assert status == 'SUCCEEDED', pprint(job_response)
-    return job_response
+    return jobId, job_response
+    # status = watch_job(batch_client=batch_client,
+    #                    log_client=log_client, job_response=job_response)
+    # job_response: DescribeJobsResponseTypeDef = batch_client.describe_jobs(
+    #     jobs=[
+    #         jobId
+    #     ]
+    # )
+    # assert status == 'SUCCEEDED', pprint(job_response)
+    # return job_response

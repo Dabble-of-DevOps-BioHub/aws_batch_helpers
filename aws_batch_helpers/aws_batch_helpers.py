@@ -85,7 +85,7 @@ def get_log_events(client: CloudWatchLogsClient, log_group, log_stream_name, sta
     A generator for log items in a single stream. This will yield all the
     items that are available at the current moment.
 
-    Completely stole this from here 
+    Completely stole this from here
     https://airflow.apache.org/docs/apache-airflow/1.10.5/_modules/airflow/contrib/hooks/aws_logs_hook.html
 
     :param log_group: The name of the log group.
@@ -145,7 +145,7 @@ def print_logs(client: CloudWatchLogsClient, log_stream_name: str, start_time: i
     log_events: List[OutputLogEventTypeDef] = get_log_events(client, log_group='/aws/batch/job',
                                                              log_stream_name=log_stream_name, start_time=start_time)
 
-    last_time_stamp =  start_time 
+    last_time_stamp =  start_time
     for log_event in log_events:
         last_time_stamp = log_event['timestamp']
         human_timestamp  = get_human_readable_time(last_time_stamp)
@@ -165,12 +165,12 @@ def watch_job(batch_client: BatchClient, log_client: CloudWatchLogsClient, job_r
     https://github.com/awslabs/aws-batch-helpers/blob/master/gpu-example/submit-job.py
 
     Args:
-        batch_client (BatchClient): boto3.client('batch') 
+        batch_client (BatchClient): boto3.client('batch')
         log_client (CloudWatchLogsClient): boto3.client('logs')
-        job_response (DescribeJobsResponseTypeDef): batch_client.describe_jobs(jobs=[jobId])  
+        job_response (DescribeJobsResponseTypeDef): batch_client.describe_jobs(jobs=[jobId])
 
     Returns:
-        JobStatusType: AWS Batch Job Status 
+        JobStatusType: AWS Batch Job Status
     """
     spinner = 0
     running = False
@@ -238,14 +238,16 @@ def submit_batch_job(batch_client: BatchClient, log_client: CloudWatchLogsClient
     """Submit job to AWS Batch and wait for it
 
     Args:
-        batch_client (BatchClient): boto3.client('batch') 
-        log_client (BatchClient): boto3.client('batch') 
-        submit_job (SubmitJobRequestRequestTypeDef): Submit object to AWS Batch 
+        batch_client (BatchClient): boto3.client('batch')
+        log_client (BatchClient): boto3.client('batch')
+        submit_job (SubmitJobRequestRequestTypeDef): Submit object to AWS Batch
     """
+    response = {'jobId' : None}
     try:
         response: SubmitJobResponseTypeDef = batch_client.submit_job(**submit_job)
     except Exception as e:
-        submit_logger.exception("Exception occured submitting job")
+        submit_logger.exception("Exception occurred submitting job")
+        raise Exception(e)
 
     jobId = response['jobId']
     job_response: DescribeJobsResponseTypeDef = batch_client.describe_jobs(

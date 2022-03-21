@@ -10,7 +10,8 @@ import os
 
 import boto3
 
-from mypy_boto3 import s3
+# from mypy_boto3 import s3
+from mypy_boto3_s3 import S3Client, S3ServiceResource
 import logging
 
 s3_logger = logging.getLogger('s3_logger')
@@ -62,14 +63,14 @@ class S3Url(object):
         return self._parsed.geturl()
 
 
-def s3_key_exists(resource: s3.S3ServiceResource, bucket_name: str, key_path: str) -> bool:
+def s3_key_exists(resource: S3ServiceResource, bucket_name: str, key_path: str) -> bool:
     """Check if a given key exists in an s3 bucket
 
     Args:
-        resource (s3.S3ServiceResource): resource: s3.S3ServiceResource = boto3.Session(region_name="us-west-1").resource("s3")
-        key (str): key name to check for 
+        resource (S3ServiceResource): resource: S3ServiceResource = boto3.Session(region_name="us-west-1").resource("s3")
+        key (str): key name to check for
     Returns:
-        [bool]: exists True/False 
+        [bool]: exists True/False
     """
     if 's3://' in str(bucket_name):
         s3_bucket_url = S3Url(str(bucket_name))
@@ -93,15 +94,15 @@ def s3_key_exists(resource: s3.S3ServiceResource, bucket_name: str, key_path: st
     return True
 
 
-def s3_bucket_exists(resource: s3.S3ServiceResource, bucket_name: str) -> bool:
+def s3_bucket_exists(resource: S3ServiceResource, bucket_name: str) -> bool:
     """Check if a bucket exists
 
     Args:
-        resource (s3.S3ServiceResource): resource: s3.S3ServiceResource = boto3.Session(region_name="us-west-1").resource("s3")
-        bucket_name (str): s3 bucket name to check for 
+        resource (S3ServiceResource): resource: S3ServiceResource = boto3.Session(region_name="us-west-1").resource("s3")
+        bucket_name (str): s3 bucket name to check for
 
     Returns:
-        [bool]: exists True/False 
+        [bool]: exists True/False
     """
     if 's3://' in str(bucket_name):
         s3_bucket_url = S3Url(str(bucket_name))
@@ -115,16 +116,16 @@ def s3_bucket_exists(resource: s3.S3ServiceResource, bucket_name: str) -> bool:
         return False
 
 
-def prefix_exists(client: s3.S3Client, bucket_name: str, prefix: str) -> bool:
+def prefix_exists(client: S3Client, bucket_name: str, prefix: str) -> bool:
     """Check if S3 prefix exists - Prefix is like a file path
 
     Args:
-        client (s3.S3Client): client = boto3.client('s3')
+        client (S3Client): client = boto3.client('s3')
         bucket_name (str): [description]
         prefix (str): [description]
 
     Returns:
-        [bool]: exists True/False 
+        [bool]: exists True/False
     """
     try:
         res = client.list_objects_v2(

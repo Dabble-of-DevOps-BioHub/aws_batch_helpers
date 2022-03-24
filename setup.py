@@ -11,7 +11,8 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['boto3', 'boto3-stubs[s3,ec2,batch,logs]']
+with open('requirements.txt') as requirements_file:
+    requirements = requirements_file.read().splitlines()
 
 test_requirements = ['pytest>=3', ]
 

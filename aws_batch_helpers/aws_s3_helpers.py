@@ -1,5 +1,4 @@
 from botocore.exceptions import ClientError, EndpointConnectionError
-from jinja2 import Environment, BaseLoader
 import boto3
 import botocore
 import time
